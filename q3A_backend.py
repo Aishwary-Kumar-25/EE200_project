@@ -86,10 +86,10 @@ if __name__ == "__main__":
     db_filepath = "fingerprint_database.pkl"
     sampling_rate = 44100
     
-    # 1. We must define mp3_files first, so the tests at the bottom can always find a song.
+    # 1. Defined mp3_files first, so the tests at the bottom can always find a song.
     mp3_files = glob.glob(os.path.join(library_path, "*.mp3"))
     
-    # 2. Database Loading or Building
+    # 2. Database Loading/Building
     if os.path.exists(db_filepath):
         print(f"Loading existing database from {db_filepath}...")
         with open(db_filepath, 'rb') as f:

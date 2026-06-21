@@ -5,15 +5,10 @@ import matplotlib.pyplot as plt
 import os
 import librosa
 import pickle
-
-# Import backend functions
 from q3A_backend import get_spectrogram, extract_peaks_dynamic, generate_paired_hashes, AudioFingerprintDB
 
-# --- Page Configuration ---
-# --- Page Configuration ---
 st.set_page_config(page_title="EE200 Audio Fingerprinting", layout="wide")
 
-# --- Title Section ---
 st.title("EE200: Course Project")
 st.subheader("Question 3: Sonic Signatures & Signals to Software")
 
@@ -26,7 +21,6 @@ with col1:
 with col2:
     st.write("**Instructor:** Dr. Tushar Sandhan")
 
-# --- Helper: Load Database ---
 @st.cache_resource
 def load_database(filepath="fingerprint_database.pkl"):
     if os.path.exists(filepath):
@@ -46,7 +40,6 @@ for hash_key, entries in db.paired_db.items():
     for song_name, _ in entries:
         song_stats[song_name] = song_stats.get(song_name, 0) + 1
 
-# --- Sidebar Navigation ---
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Go to:", ["Library Overview", "Identify Single Clip", "Batch Processing"])
 
@@ -105,7 +98,6 @@ elif page == "Identify Single Clip":
         st.success(f"### Prediction: {song}")
         st.info(f"Confidence: {votes} aligned hashes")
 
-        # --- Visualizations ---
         with st.expander("1. Feature Extraction (Spectrogram & Peaks)", expanded=True):
             fig1, ax1 = plt.subplots(figsize=(10, 4))
             mesh = ax1.pcolormesh(times, freqs, spec_db, shading='gouraud', cmap='viridis')
